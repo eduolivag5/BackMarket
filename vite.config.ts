@@ -1,13 +1,17 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import path from 'path'
+import { fileURLToPath } from 'url'
 
-// https://vite.dev/config/
+// 👇 Estas dos líneas reemplazan __dirname
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'), // 👈 Esto es lo importante
+      '@': path.resolve(__dirname, './src'), // ✅ Ahora sí funcionará en Netlify
     },
   },
 })
