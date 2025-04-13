@@ -3,11 +3,13 @@ import { Image } from "@heroui/react";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 
-const storageOptions = ["128 GB", "256 GB", "512 GB"]
+interface StorageOptionsProps {
+    storageOptionsList: number[]
+}
 
-export default function StorageOptions() {
+export default function StorageOptions({storageOptionsList} : StorageOptionsProps) {
 
-    const [selectedStorage, setSelectedStorage] = useState<string>(storageOptions[0]);
+    const [selectedStorage, setSelectedStorage] = useState<number>(storageOptionsList[0]);
 
     console.log(selectedStorage)
 
@@ -25,7 +27,7 @@ export default function StorageOptions() {
             <div className='col-span-2 px-20'>
                 <h1 className="text-xl font-medium mb-4">Selecciona el almacenamiento</h1>
                 <div className="space-y-2">
-                    {storageOptions.map((storage) =>
+                    {storageOptionsList.map((storage) =>
                         <Button
                             key={storage}
                             onClick={() => setSelectedStorage(storage)}
@@ -37,7 +39,7 @@ export default function StorageOptions() {
                                 onClick={() => setSelectedStorage(storage)}
                             />
                             <div className="flex justify-between items-center gap-8 w-full">
-                                <span className="font-bold">{storage}</span>
+                                <span className="font-bold">{storage} GB</span>
                                 <span className="font-light">Precio $$</span>
                             </div>
                         </Button>

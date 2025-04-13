@@ -5,8 +5,9 @@ import { InfoItem } from '../InfoItem';
 import ShippingIcon from '../../icons/Shipping';
 import GarantiaIcon from '../../icons/Garantia';
 import VerificationIcon from '../../icons/Verification';
+import { Product } from '../../types';
 
-export default function ProductPrice({ item } : {item: any}) {
+export default function ProductPrice({ item } : {item: Product}) {
     return (
         <div className='space-y-4'>
             <Chip 
@@ -17,14 +18,14 @@ export default function ProductPrice({ item } : {item: any}) {
                 className="px-4"
             />
             <p className="text-3xl font-semibold">
-                {item.nombre} {item.almacenamiento}GB - {item.color} - Libre
+                {item.modelo} {item.almacenamiento[0]}GB - {item.color[0]} - Libre
             </p>
 
             <div className="flex gap-4">
                 <div id={`price-${item.id}`} className="flex-1">
-                    <p className="text-xl font-bold">{item.precio.toFixed(2)} €</p>
+                    <p className="text-xl font-bold">2000 €</p>
                     <div id={`disccount-${item.id}`} className="flex gap-2 items-center">
-                        <span className="font-medium text-sm line-through">{item.precio.toFixed(2)} € nuevo</span>
+                        <span className="font-medium text-sm line-through">2500 € nuevo</span>
                         <Chip color="success"variant="flat">
                             <p className="font-bold">Ahorra 403,00 €</p>
                         </Chip>
