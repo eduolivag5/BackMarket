@@ -37,13 +37,24 @@ export function Gallery({ image_urls }: GalleryProps) {
                                     </div>
                                 </div>
                             )}
-
                         </Card>
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <div className="mt-2 flex gap-2 items-center justify-center">
+                <CarouselPrevious />
+                {image_urls.map((image, index) => (
+                    <Image
+                        radius="sm"
+                        alt={`Imagen de artículo ${index + 1}`}
+                        src={image.src}
+                        className="w-full object-cover border border-gray-300"
+                        height={40}
+                    />
+                ))}
+                <CarouselNext />
+            </div>
+            
         </Carousel>
     )
 }

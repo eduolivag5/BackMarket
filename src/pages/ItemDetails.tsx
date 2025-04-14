@@ -7,6 +7,7 @@ import BatteryOptions from "../components/item-details/BatteryOptions";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getProductDetailsById } from "../api";
+import ColorsOptions from "../components/item-details/ColorsOptions";
 
 export default function ItemDetails() {
 
@@ -43,7 +44,7 @@ export default function ItemDetails() {
             <ProductStatus />
             <BatteryOptions />
             <StorageOptions storageOptionsList={item.almacenamiento} />
-            
+            <ColorsOptions itemImages={item.images} itemColors={item.color} />
         </div>
     )
 }

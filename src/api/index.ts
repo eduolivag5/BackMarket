@@ -1,7 +1,9 @@
 import { ProductSchema, ProductsListSchema } from "../types";
 
+const API_ENDPOINT = 'https://backmarket-api.onrender.com'
+
 export async function getAllProducts() {
-    const url = 'http://127.0.0.1:8000/products'
+    const url = `${API_ENDPOINT}/products`
 
     try {
         const response = await fetch(url);
@@ -32,7 +34,7 @@ export async function getAllProducts() {
 
 
 export async function getProductDetailsById(id: string) {
-    const url = `http://127.0.0.1:8000/products?id=${id}`
+    const url = `${API_ENDPOINT}/products?id=${id}`
 
     try {
         const response = await fetch(url);

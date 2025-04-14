@@ -195,7 +195,7 @@ const CarouselPrevious = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
 >(({ className, variant = "outline", size = "icon", ...props }, ref) => {
-  const { orientation, scrollPrev, canScrollPrev } = useCarousel()
+  const { scrollPrev, canScrollPrev } = useCarousel()
 
   return (
     <Button
@@ -203,10 +203,7 @@ const CarouselPrevious = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "absolute h-8 w-8 inline-flex items-center rounded-full hover:bg-foreground hover:text-background transition-colors duration-200",
-        orientation === "horizontal"
-          ? "-left-4 top-1/2 -translate-y-1/2"
-          : "-top-4 left-1/2 -translate-x-1/2 rotate-90",
+        "h-8 w-8 inline-flex items-center rounded-full hover:bg-foreground hover:text-background transition-colors duration-200",
         className
       )}
       disabled={!canScrollPrev}
@@ -224,7 +221,7 @@ const CarouselNext = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
 >(({ className, variant = "outline", size = "icon", ...props }, ref) => {
-  const { orientation, scrollNext, canScrollNext } = useCarousel()
+  const { scrollNext, canScrollNext } = useCarousel()
 
   return (
     <Button
@@ -232,10 +229,7 @@ const CarouselNext = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "absolute h-8 w-8 rounded-full inline-flex items-center hover:bg-foreground hover:text-background transition-colors duration-200",
-        orientation === "horizontal"
-          ? "-right-4 top-1/2 -translate-y-1/2"
-          : "-bottom-4 left-1/2 -translate-x-1/2 rotate-90",
+        "h-8 w-8 rounded-full inline-flex items-center hover:bg-foreground hover:text-background transition-colors duration-200",
         className
       )}
       disabled={!canScrollNext}
