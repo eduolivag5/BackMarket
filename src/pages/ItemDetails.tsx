@@ -8,15 +8,22 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getProductDetailsById } from "../api";
 import ColorsOptions from "../components/item-details/ColorsOptions";
+import { useEffect } from "react";
 
 export default function ItemDetails() {
 
-    const { id } = useParams();
+    const { id } = useParams();    
 
     const { data: item } = useQuery({
         queryFn: () => getProductDetailsById(id!),
         queryKey: [`product-details-${id}`]
     })
+
+    useEffect(() => {
+        if (item) {
+            document.title = `${item.modelo} ${item.almacenamiento[0]}GB - ${item.color[0]}`
+        }           
+    }, [item])
 
     if (item)
     return (
