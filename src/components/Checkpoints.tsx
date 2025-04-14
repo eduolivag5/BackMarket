@@ -56,7 +56,7 @@ export default function Checkpoints() {
             <h1 className='text-xl font-bold'>
                 Todos los dispositivos están reacondicionados por profesionales siguiendo 25 puntos de control
             </h1>
-            <div className="flex items-start gap-2">
+            <div className="flex items-start gap-8 overflow-x-scroll">
                 {checkpointsList.map((item) => <CheckpointItem item={item} />)}
             </div>
         </div>

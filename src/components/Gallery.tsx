@@ -22,7 +22,6 @@ export function Gallery({ image_urls }: GalleryProps) {
                                 alt={`Imagen de artículo ${index + 1}`}
                                 src={image_urls[index].src}
                                 className="w-full object-cover"
-                                height={400}
                             />
                             
                             {(image_urls[index].tags || image_urls[index].title) && (

@@ -14,7 +14,7 @@ export default function ColorsOptions({itemImages, itemColors} : ColorsOptionsPr
     const [selectedColor, setSelectedColor] = useState<string>(itemColors[0]);
 
     return (
-        <div className='grid grid-cols-3 items-center gap-10'>
+        <div className='md:grid md:grid-cols-3 items-center space-y-4 md:space-y-0 gap-10'>
             <div className='col-span-1'>
                 <Gallery
                     image_urls={
@@ -27,7 +27,7 @@ export default function ColorsOptions({itemImages, itemColors} : ColorsOptionsPr
                 />
             </div>
 
-            <div className='col-span-2 px-20'>
+            <div className='md:col-span-2 md:px-20'>
                 <h1 className="text-xl font-medium mb-4">Selecciona el color</h1>
                 <div className="grid grid-cols-2 gap-2">
                     {itemColors.map((color) => 
@@ -35,7 +35,7 @@ export default function ColorsOptions({itemImages, itemColors} : ColorsOptionsPr
                             key={color}
                             onClick={() => setSelectedColor(color)}
                             variant={selectedColor === color ? 'default' : 'outline'}
-                            className="w-full py-8 text-left flex items-center justify-start gap-8"
+                            className="w-full py-8 text-left flex items-center justify-start gap-4 md:gap-8"
                         >
                             <Checkbox
                                 checked={selectedColor === color} 

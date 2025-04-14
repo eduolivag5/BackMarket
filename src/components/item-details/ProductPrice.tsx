@@ -15,19 +15,19 @@ export default function ProductPrice({ item } : {item: Product}) {
                 startContent={<img src="/butterfly.svg" className="w-5 h-5" />} 
                 endContent={<Link to="#eco" className="underline font-semibold">Más sostenible que nuevo</Link>} 
                 variant="flat"
-                className="px-4"
+                className="hidden md:flex px-4"
             />
             <p className="text-3xl font-semibold">
                 {item.modelo} {item.almacenamiento[0]}GB - {item.color[0]} - Libre
             </p>
 
             <div className="flex gap-4">
-                <div id={`price-${item.id}`} className="flex-1">
-                    <p className="text-xl font-bold">2000 €</p>
+                <div id={`price-${item.id}`} className="md:flex-1">
+                    <p className="text-xl font-bold">2000€</p>
                     <div id={`disccount-${item.id}`} className="flex gap-2 items-center">
-                        <span className="font-medium text-sm line-through">2500 € nuevo</span>
+                        <span className="font-medium text-xs md:text-sm line-through">2500€ nuevo</span>
                         <Chip color="success"variant="flat">
-                            <p className="font-bold">Ahorra 403,00 €</p>
+                            <p className="text-xs md:text-sm font-bold">Ahorra 403,00€</p>
                         </Chip>
                     </div>
                     <p className="text-xs">IVA incluido*</p>
@@ -39,7 +39,7 @@ export default function ProductPrice({ item } : {item: Product}) {
                             Comprar
                         </Link>
                     </Button>
-                    <Button isIconOnly color="secondary" radius="sm" className="p-2 border border-foreground">
+                    <Button isIconOnly color="secondary" radius="sm" className="hidden md:block p-2 border border-foreground">
                         <HeartIcon />
                     </Button>
                 </div>

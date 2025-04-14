@@ -20,8 +20,8 @@ export default function ItemDetails() {
 
     if (item)
     return (
-        <div className="space-y-10">
-            <div className="grid grid-cols-3 items-center gap-10">
+        <div className="space-y-20">
+            <div className="md:grid md:grid-cols-3 items-center gap-10">
                 <div className="col-span-1">
                     <Gallery
                         image_urls={
@@ -33,7 +33,7 @@ export default function ItemDetails() {
                         }
                     />
                 </div>
-                <div className="col-span-2 px-10">
+                <div className="col-span-2 px-4 md:px-10">
                     <ProductPrice item={item} />
                 </div>
             </div>
@@ -41,10 +41,13 @@ export default function ItemDetails() {
             <Checkpoints />
 
             {/* OPCIONES DE SELECCIÓN */}
-            <ProductStatus />
-            <BatteryOptions />
-            <StorageOptions storageOptionsList={item.almacenamiento} />
-            <ColorsOptions itemImages={item.images} itemColors={item.color} />
+            <div className="space-y-20">
+                <ProductStatus />
+                <BatteryOptions />
+                <StorageOptions storageOptionsList={item.almacenamiento} />
+                <ColorsOptions itemImages={item.images} itemColors={item.color} />
+            </div>
+            
         </div>
     )
 }

@@ -25,17 +25,16 @@ export default function BatteryOptions() {
     const [selectedBattery, setSelectedBattery] = useState<BatteryOption>(BatteryOptionsList[0]);
 
     return (
-        <div className='grid grid-cols-3 items-center gap-10'>
+        <div className='md:grid md:grid-cols-3 items-center space-y-4 md:space-y-0 gap-10'>
             <div className='col-span-1'>
                 <Image
                     alt="Opciones de almacenamiento"
                     src="/step-battery.avif"
                     className="w-full object-cover"
-                    height={400}
                 />
             </div>
 
-            <div className='col-span-2 px-20'>
+            <div className='md:col-span-2 md:px-20'>
                 <h1 className="text-xl font-medium mb-4">Selecciona una opción de batería</h1>
                 <div className="p-4 mb-4 text-sm bg-blue-100 rounded-lg flex items-center gap-4">
                     <BatteryIcon />
@@ -53,7 +52,7 @@ export default function BatteryOptions() {
                                 checked={selectedBattery === battery} 
                                 onClick={() => setSelectedBattery(battery)} 
                             />                            
-                            <div className="flex justify-between items-center gap-8 w-full">
+                            <div className="flex justify-between items-center gap-4 md:gap-8 w-full">
                                 <div>
                                     <p className="font-bold">{battery.title}</p>
                                     <p className="font-light text-sm">{battery.description}</p>

@@ -14,17 +14,16 @@ export default function StorageOptions({storageOptionsList} : StorageOptionsProp
     console.log(selectedStorage)
 
     return (
-        <div className='grid grid-cols-3 items-center gap-10'>
+        <div className='md:grid md:grid-cols-3 items-center space-y-4 md:space-y-0 gap-10'>
             <div className='col-span-1'>
                 <Image
                     alt="Opciones de almacenamiento"
                     src="/step-storage.avif"
                     className="w-full object-cover"
-                    height={400}
                 />
             </div>
 
-            <div className='col-span-2 px-20'>
+            <div className='md:col-span-2 md:px-20'>
                 <h1 className="text-xl font-medium mb-4">Selecciona el almacenamiento</h1>
                 <div className="space-y-2">
                     {storageOptionsList.map((storage) =>
@@ -38,7 +37,7 @@ export default function StorageOptions({storageOptionsList} : StorageOptionsProp
                                 checked={selectedStorage === storage}                                
                                 onClick={() => setSelectedStorage(storage)}
                             />
-                            <div className="flex justify-between items-center gap-8 w-full">
+                            <div className="flex justify-between items-center gap-4 md:gap-8 w-full">
                                 <span className="font-bold">{storage} GB</span>
                                 <span className="font-light">Precio $$</span>
                             </div>
