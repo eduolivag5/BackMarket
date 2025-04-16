@@ -9,10 +9,10 @@ export default function ReviewItem({ item }: ReviewItemProps) {
         <div>
             <div
                 className="relative p-4 overflow-hidden min-h-96 bg-cover bg-center"
-                style={{ backgroundImage: `url(${item.imageSrc})` }}
+                style={{ backgroundImage: `url(${item.image})` }}
             >
 
-                <span className="py-1 px-2 text-sm font-semibold bg-gray-100 rounded-sm">{item.user}</span>
+                <span className="py-1 px-2 text-sm font-semibold bg-gray-100 rounded-sm">{item.name_user}</span>
 
                 {/* Sombra degradada */}
                 <div className="absolute bottom-0 left-0 w-full h-2/3 bg-gradient-to-t from-black to-transparent z-10" />
@@ -22,7 +22,7 @@ export default function ReviewItem({ item }: ReviewItemProps) {
                     {item.comment}
                 </p>
             </div>
-            <p className="pr-10 p-4 text-sm font-bold">{item.productName}</p>
+            <p className="pr-10 p-4 text-sm font-bold">{item.modelo}</p>
         </div>
         
     );

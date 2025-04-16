@@ -1,4 +1,4 @@
-import { ProductSchema, ProductsListSchema } from "../types";
+import { ProductSchema, ProductsListSchema, ReviewsListSchema } from "../types";
 
 const API_ENDPOINT = 'https://backmarket-api.onrender.com'
 
@@ -60,5 +60,36 @@ export async function getProductDetailsById(id: string) {
 
     } catch (err) {
         throw new Error("Error al obtener los productos");
+    }
+}
+
+
+export async function getAllReviews() {
+    const url = `${API_ENDPOINT}/reviews`
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Error al obtener las reviews.");
+        }
+
+        const data = await response.json();
+
+        if (data.error) {
+            throw new Error(data.message || "Error desconocido en la respuesta");
+        }
+
+        const result = ReviewsListSchema.safeParse(data.data);
+
+        if (!result.success) {
+            console.log(result.error)
+            throw new Error("Error de validación de las reviews.");
+        }
+
+        return result.data;
+
+    } catch (err) {
+        throw new Error("Error al obtener las reviews.");
     }
 }

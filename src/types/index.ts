@@ -30,14 +30,18 @@ export type ProductsList = z.infer<typeof ProductsListSchema>
 
 
 /* REVIEWS */
-export type Review = {
-    id: string;
-    user: string;
-    buyDate: Date;
-    reviewDate: Date;
-    stars: number;
-    comment: string;
-    productName: string;
-    productId: string;
-    imageSrc: string;
-}
+const { id: productIdSchema, modelo: modeloSchema } = ProductSchema.shape
+
+export const ReviewSchema = z.object({
+  id: z.string(),
+  stars: z.number(),
+  comment: z.string(),
+  image: z.string(),
+  product_id: productIdSchema,
+  modelo: modeloSchema,
+  name_user: z.string()
+})
+export const ReviewsListSchema = z.array(ReviewSchema);
+
+export type Review = z.infer<typeof ReviewSchema>
+export type ReviewsList = z.infer<typeof ReviewsListSchema>
