@@ -8,6 +8,16 @@ import VerificationIcon from '../../icons/Verification';
 import { Product } from '../../types';
 
 export default function ProductPrice({ item } : {item: Product}) {
+
+    const lowPrice = item.prices.sort((a, b) => a.price > b.price ? 1 : -1)[0].price;
+    const highPrice = item.prices.sort((a, b) => a.price < b.price ? 1 : -1)[0].price;
+
+    const today = new Date();
+    const tomorrow = new Date(today); 
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    const dateOptions: Intl.DateTimeFormatOptions = { day: '2-digit', month: 'short' };
+
     return (
         <div className='space-y-4'>
             <Chip 
@@ -23,11 +33,17 @@ export default function ProductPrice({ item } : {item: Product}) {
 
             <div className="flex gap-4">
                 <div id={`price-${item.id}`} className="md:flex-1">
-                    <p className="text-xl font-bold">2000€</p>
+                    <p className="text-xl font-bold">
+                        {lowPrice.toFixed(2)}$
+                    </p>
                     <div id={`disccount-${item.id}`} className="flex gap-2 items-center">
-                        <span className="font-medium text-xs md:text-sm line-through">2500€ nuevo</span>
+                        <span className="font-medium text-xs md:text-sm line-through">
+                            {highPrice.toFixed(2)}€ nuevo
+                        </span>
                         <Chip color="success"variant="flat">
-                            <p className="text-xs md:text-sm font-bold">Ahorra 403,00€</p>
+                            <p className="text-xs md:text-sm font-bold">
+                                Ahorra {(highPrice - lowPrice).toFixed(2)}€
+                            </p>
                         </Chip>
                     </div>
                     <p className="text-xs">IVA incluido*</p>
@@ -50,8 +66,10 @@ export default function ProductPrice({ item } : {item: Product}) {
             <div className="space-y-2">
                 <InfoItem
                     Icon={ShippingIcon}
-                    title="Envío gratuito el 15 abr - 16 abr."
-                    subtitle="Envío rápido entre el 14 abr y el 15 abr desde 5,00 €."
+                    title={`Envío gratuito hoy ${today.toLocaleString('es-ES', dateOptions)}.`}
+                    subtitle={`Envío rápido entre el ${today.toLocaleString('es-ES', dateOptions)} 
+                        y el ${tomorrow.toLocaleString('es-ES', dateOptions)} desde 5,00 €.`
+                    }
                 />
                 <InfoItem
                     Icon={GarantiaIcon}

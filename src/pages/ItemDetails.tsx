@@ -49,7 +49,7 @@ export default function ItemDetails() {
 
             {/* OPCIONES DE SELECCIÓN */}
             <div className="space-y-20">
-                <ProductStatus />
+                <ProductStatus itemPrices={item.prices} />
                 <BatteryOptions />
                 <StorageOptions storageOptionsList={item.almacenamiento} />
                 <ColorsOptions itemImages={item.images} itemColors={item.color} />
