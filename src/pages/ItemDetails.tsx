@@ -28,7 +28,7 @@ export default function ItemDetails() {
     if (item)
     return (
         <div>
-            <div className="my-20 md:grid md:grid-cols-3 items-center gap-10">
+            <div className="mb-20 md:grid md:grid-cols-3 items-center gap-10">
                 <div className="col-span-1">
                     <Gallery
                         image_urls={
