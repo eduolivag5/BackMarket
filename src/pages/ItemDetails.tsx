@@ -27,8 +27,8 @@ export default function ItemDetails() {
 
     if (item)
     return (
-        <div className="space-y-20">
-            <div className="md:grid md:grid-cols-3 items-center gap-10">
+        <div>
+            <div className="my-20 md:grid md:grid-cols-3 items-center gap-10">
                 <div className="col-span-1">
                     <Gallery
                         image_urls={
@@ -48,7 +48,7 @@ export default function ItemDetails() {
             <Checkpoints />
 
             {/* OPCIONES DE SELECCIÓN */}
-            <div className="space-y-20">
+            <div id="buy" className="py-20 space-y-20">
                 <ProductStatus itemPrices={item.prices} />
                 <BatteryOptions />
                 <StorageOptions storageOptionsList={item.almacenamiento} />

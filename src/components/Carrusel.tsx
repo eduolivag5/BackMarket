@@ -6,12 +6,12 @@ import React from "react";
 
 interface CarruselType {
     title: string | undefined;
-    itemsToShow: number;
+    format: "compact" | "full";
     itemsList: Product[] | Review[];
     ElementToRender: React.ElementType;
-}
+}  
 
-export function Carrusel({ title, itemsToShow, itemsList, ElementToRender } : CarruselType) {
+export function Carrusel({ title, format, itemsList, ElementToRender } : CarruselType) {
 
     return (
         <Carousel>
@@ -25,7 +25,7 @@ export function Carrusel({ title, itemsToShow, itemsList, ElementToRender } : Ca
             <CarouselContent>
                 {itemsList
                     .map((item) => (
-                        <CarouselItem key={item.id} className={`basis-1/2 md:basis-1/${itemsToShow}`}>
+                        <CarouselItem key={item.id} className={`basis-1/2 ${format === "compact" ? "md:basis-1/4" : "md:basis-1/5"}`}>
                             <Card className="h-full shadow-none border border-gray-300">
                                 <ElementToRender item={item} />
                             </Card>

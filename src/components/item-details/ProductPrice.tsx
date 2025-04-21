@@ -50,10 +50,19 @@ export default function ProductPrice({ item } : {item: Product}) {
                 </div>
 
                 <div className="flex items-center gap-2 flex-1">
-                    <Button color="primary" radius="sm" size="lg" className="w-full border border-foreground font-bold">
-                        <Link to="/buy">
-                            Comprar
-                        </Link>
+                    <Button
+                        color="primary"
+                        radius="sm"
+                        size="lg"
+                        className="w-full border border-foreground font-bold"
+                        onPress={() => {
+                            const target = document.getElementById("buy");
+                            if (target) {
+                            target.scrollIntoView({ behavior: "smooth" });
+                            }
+                        }}
+                    >
+                        Comprar
                     </Button>
                     <Button isIconOnly color="secondary" radius="sm" className="hidden md:block p-2 border border-foreground">
                         <HeartIcon />

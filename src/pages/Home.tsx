@@ -22,7 +22,7 @@ export default function Home() {
             {data && (
                 <Carrusel 
                     title="Sugerencias para ti"
-                    itemsToShow={5}
+                    format="full"
                     itemsList={data
                         .sort((a, b) => a.fecha_lanzamiento < b.fecha_lanzamiento ? 1 : -1)
                         .slice(0,10)

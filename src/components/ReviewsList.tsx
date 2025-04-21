@@ -12,8 +12,8 @@ export default function ReviewsList() {
 
     if (reviewsList)
     return (
-        <Carrusel title="Reseñas 15 millones"
-            itemsToShow={4}
+        <Carrusel title="+15 millones de clientes por todo el mundo"
+            format="compact"
             itemsList={reviewsList}
             ElementToRender={ReviewItem}
         />
