@@ -47,10 +47,10 @@ export default function Footer() {
                 <div id="services" className="col-span-1 space-y-4">
                     <h1 className="text-lg font-bold">Servicios</h1>
                     <div className="flex flex-col space-y-1 text-sm">
-                        {servicesList.map((service) => <p>{service}</p>)}
+                        {servicesList.map((service) => <p key={service}>{service}</p>)}
                         <div className="flex flex-wrap items-center gap-2">
                             {paymentsMethodsList.map((method) => 
-                                <img src={`/payments/${method}.svg`} className="h-5" />
+                                <img key={method} src={`/payments/${method}.svg`} className="h-5" />
                             )}
                         </div>                        
                     </div>
@@ -58,7 +58,7 @@ export default function Footer() {
                 <div id="buying-guides" className="col-span-1 space-y-4">
                     <h1 className="text-lg font-bold">Guías de compra</h1>
                     <div className="flex flex-col space-y-1 text-sm">
-                        {buyingGuidesList.map((guide) => <p>{guide}</p>)}
+                        {buyingGuidesList.map((guide) => <p key={guide}>{guide}</p>)}
                     </div>
                 </div>
                 <div id="legal-conditions" className="col-span-1 space-y-4">

@@ -1,10 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
 import Header from "../components/Header";
-import { getAllProducts } from "../api";
 import TrendingSearches from "../components/TrendingSearches";
 import ReviewsList from "../components/ReviewsList";
-import { Carrusel } from "../components/Carrusel";
-import ProductItem from "../components/ProductItem";
+import ProductsList from "../components/ProductsList";
+import { useQuery } from "@tanstack/react-query";
+import { getAllProducts } from "../api";
+
 
 export default function Home() {
 
@@ -19,17 +19,7 @@ export default function Home() {
 
             <ReviewsList />
 
-            {data && (
-                <Carrusel 
-                    title="Sugerencias para ti"
-                    format="full"
-                    itemsList={data
-                        .sort((a, b) => a.fecha_lanzamiento < b.fecha_lanzamiento ? 1 : -1)
-                        .slice(0,10)
-                    }
-                    ElementToRender={ProductItem}
-                />
-            )}
+            {data && <ProductsList items={data} />}
 
             <TrendingSearches />
 

@@ -15,7 +15,7 @@ export default function ItemDetails() {
     const { id } = useParams();    
 
     const { data: item } = useQuery({
-        queryFn: () => getProductDetailsById(id!),
+        queryFn: () => getProductDetailsById(id),
         queryKey: [`product-details-${id}`]
     })
 

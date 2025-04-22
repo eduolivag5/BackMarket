@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import TermsOfUse from "./pages/TermsOfUse";
 import LegalMentions from "./pages/LegalMentions";
 import { useEffect } from "react";
+import CategoryDetails from "./pages/CategoryDetails";
 
 export default function App() {
 
@@ -24,6 +25,7 @@ export default function App() {
                     <Route path="/terms-of-use" element={<TermsOfUse />} />
                     <Route path="/legal-mentions" element={<LegalMentions />} />
                     <Route path="/details/:id" element={<ItemDetails />} />
+                    <Route path="/category/:id" element={<CategoryDetails />} />
                 </Routes>
             </div>
             <div className="bg-white p-8">

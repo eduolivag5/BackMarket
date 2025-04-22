@@ -32,8 +32,7 @@ export async function getAllProducts() {
     }
 }
 
-
-export async function getProductDetailsById(id: string) {
+export async function getProductDetailsById(id?: string) {
     const url = `${API_ENDPOINT}/products?id=${id}`
 
     try {
@@ -63,6 +62,40 @@ export async function getProductDetailsById(id: string) {
     }
 }
 
+export async function getProductsFiltered(category?: string, tags?: string) {
+    const params = new URLSearchParams();
+
+    if (category) params.append("category", category);
+    if (tags) params.append("tags", tags); // Ej: "iphone,movil"
+
+    const url = `${API_ENDPOINT}/products?${params.toString()}`;
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Error al obtener los productos");
+        }
+
+        const data = await response.json();
+
+        if (data.error) {
+            throw new Error(data.message || "Error desconocido en la respuesta");
+        }
+
+        const result = ProductsListSchema.safeParse(data.data);
+
+        if (!result.success) {
+            console.log(result.error);
+            throw new Error("Error de validación de los productos");
+        }
+
+        return result.data;
+
+    } catch (err) {
+        throw new Error("Error al obtener los productos");
+    }
+}
 
 export async function getAllReviews() {
     const url = `${API_ENDPOINT}/reviews`
