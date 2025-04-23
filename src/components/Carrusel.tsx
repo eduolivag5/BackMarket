@@ -1,7 +1,7 @@
 import { Card } from "@heroui/react"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel"
 import { Product, Review } from "../types"
-import SectionTitle from "./layout-items/SectionTitle";
+import SectionTitle from "./layout/SectionTitle";
 import React from "react";
 
 interface CarruselType {

@@ -1,3 +1,4 @@
+import React from 'react';
 import { z } from 'zod';
 
 /* PRECIOS */
@@ -45,3 +46,9 @@ export const ReviewsListSchema = z.array(ReviewSchema);
 
 export type Review = z.infer<typeof ReviewSchema>
 export type ReviewsList = z.infer<typeof ReviewsListSchema>
+
+/* SELL CONDITIONS */
+export interface sellConditionItem {
+  icon: React.ElementType
+  text: string
+}

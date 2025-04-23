@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import SectionTitle from "./layout-items/SectionTitle"
+import SectionTitle from "./layout/SectionTitle"
 
 const trendingSearches = [
     {
@@ -26,8 +26,8 @@ export default function TrendingSearches() {
             <SectionTitle title='Compra los "más buscados"' />
             <div className="grid grid-cols-4 gap-4">
                 {trendingSearches.map((item) => (
-                    <Link to={`/categories/${item.title.toLowerCase()}`} className="space-y-1">
-                        <img src={item.imageSrc} className="rounded-lg" />
+                    <Link to={`/products/${item.title.toLowerCase()}`} className="space-y-1">
+                        <img src={item.imageSrc} className="rounded-xl object-cover transition-shadow duration-300 hover:shadow-lg cursor-pointer" />
                         <p className="px-1 font-bold text-lg">{item.title}</p>
                     </Link>
                 ))}

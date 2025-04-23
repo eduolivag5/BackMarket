@@ -4,7 +4,7 @@ import {  Drawer,  DrawerContent,  DrawerHeader,  DrawerBody,  DrawerFooter} fro
 import {User} from "@heroui/user";
 import { Image } from "@heroui/react";
 import { Button } from "@heroui/react";
-import StarsRating from "./StarsRating";
+import StarsRating from "./layout/StarsRating";
 import { Link } from "react-router-dom";
 
 interface ReviewItemProps {
