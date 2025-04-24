@@ -47,8 +47,25 @@ export const ReviewsListSchema = z.array(ReviewSchema);
 export type Review = z.infer<typeof ReviewSchema>
 export type ReviewsList = z.infer<typeof ReviewsListSchema>
 
+/* CATEGORIES */
+export const CategorySchema = z.object({
+  id: z.number(),
+  name: z.string()
+})
+export const CategoriesListSchema = z.array(CategorySchema);
+
+export type Category = z.infer<typeof CategorySchema>
+export type CategoriesList = z.infer<typeof CategoriesListSchema>
+
+
 /* SELL CONDITIONS */
 export interface sellConditionItem {
   icon: React.ElementType
   text: string
+}
+
+/* FAQ */
+export interface faqItem {
+  question: string
+  answer: string
 }

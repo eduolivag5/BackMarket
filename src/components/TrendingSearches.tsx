@@ -24,7 +24,7 @@ export default function TrendingSearches() {
     return (
         <div className="space-y-2">
             <SectionTitle title='Compra los "más buscados"' />
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {trendingSearches.map((item) => (
                     <Link to={`/products/${item.title.toLowerCase()}`} className="space-y-1">
                         <img src={item.imageSrc} className="rounded-xl object-cover transition-shadow duration-300 hover:shadow-lg cursor-pointer" />

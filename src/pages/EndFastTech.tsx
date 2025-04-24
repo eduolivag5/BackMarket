@@ -67,21 +67,21 @@ export default function EndFastTech() {
                 </p>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex flex-col md:flex-row gap-4">
                 {adds.map((add) => 
-                    <div className="flex-1 space-y-2 bg-white rounded-lg p-8">
-                        <h1>{add.title}</h1>
+                    <div className="flex-1 space-y-2 bg-white rounded-lg p-4 md:p-8">
+                        <h1 className="font-medium">{add.title}</h1>
                         <p className="w-full rounded-3xl p-8 font-bold bg-black text-white text-5xl">
                             {add.value}
                         </p>
-                        <p className="text-sm">{add.description}</p>
+                        <p className="text-sm leading-relaxed">{add.description}</p>
                     </div>
                 )}
             </div>
 
-            <h1 className="text-4xl font-bold text-center">Cambia el chip (y no el móvil)</h1>
+            <h1 className="text-4xl font-bold text-center">Cambia el chip <br/>(y no el móvil)</h1>
 
-            <div className="flex gap-4">
+            <div className="flex flex-col md:flex-row gap-4">
                 {tips.map((tip) => 
                     <Card className="flex-1 p-4 text-center">
                         <p className="text-xl font-medium mb-2">{tip.title}</p>
