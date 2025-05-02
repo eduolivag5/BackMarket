@@ -28,7 +28,7 @@ export default function ProductPrice({ item } : {item: Product}) {
                 className="hidden md:flex px-4"
             />
             <p className="text-3xl font-semibold">
-                {item.modelo} {item.almacenamiento[0]}GB - {item.color[0]} - Libre
+                {item.name}
             </p>
 
             <div className="flex gap-4">

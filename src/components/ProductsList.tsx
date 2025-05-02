@@ -13,7 +13,6 @@ export default function ProductsList({ items } : ProductsListProps) {
             title="Sugerencias para ti"
             format="full"
             itemsList={items
-                .sort((a, b) => a.fecha_lanzamiento < b.fecha_lanzamiento ? 1 : -1)
                 .slice(0,10)
             }
             ElementToRender={ProductItem}

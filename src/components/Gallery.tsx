@@ -44,6 +44,7 @@ export function Gallery({ image_urls }: GalleryProps) {
                 <CarouselPrevious />
                 {image_urls.map((image, index) => (
                     <Image
+                        key={`image-${image.title}-${index}`}
                         radius="sm"
                         alt={`Imagen de artículo ${index + 1}`}
                         src={image.src}

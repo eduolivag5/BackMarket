@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { getCategoryInfo, getProductsFiltered } from '../api';
 import { FAQ } from '../components/FAQ';
 import ProductsGrid from '../components/ProductsGrid';
+import Brands from '../components/Brands';
 
 export default function CategoryDetails() {
 
@@ -20,9 +21,11 @@ export default function CategoryDetails() {
     
 
     return (
-        <div>
+        <div className='space-y-10'>
 
-            <h1 className='text-5xl font-bold'>{categoryInfo?.name} reacondicionados</h1>
+            <h1 className='text-5xl font-bold font-dm-serif'>{categoryInfo?.name} reacondicionados</h1>
+
+            {categoryInfo && <Brands category={categoryInfo} />}
 
             {products && <ProductsGrid productsList={products} />}
 

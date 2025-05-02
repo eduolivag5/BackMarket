@@ -21,7 +21,7 @@ export default function ItemDetails() {
 
     useEffect(() => {
         if (item) {
-            document.title = `${item.modelo} ${item.almacenamiento[0]}GB - ${item.color[0]}`
+            document.title = item.name_short
         }           
     }, [item])
 
@@ -51,8 +51,8 @@ export default function ItemDetails() {
             <div id="buy" className="py-20 space-y-20">
                 <ProductStatus itemPrices={item.prices} />
                 <BatteryOptions />
-                <StorageOptions storageOptionsList={item.almacenamiento} />
-                <ColorsOptions itemImages={item.images} itemColors={item.color} />
+                <StorageOptions storageOptionsList={item.storages} />
+                <ColorsOptions itemImages={item.images} itemColors={item.colors} />
             </div>
             
         </div>

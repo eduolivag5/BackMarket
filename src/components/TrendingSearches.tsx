@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import SectionTitle from "./layout/SectionTitle"
+import SectionTitle from "./SectionTitle"
 
 const trendingSearches = [
     {
@@ -13,10 +13,6 @@ const trendingSearches = [
     {
         title: "iPad",
         imageSrc: "https://www.backmarket.es/cdn-cgi/image/format%3Dauto%2Cquality%3D75%2Cwidth%3D1920/https://images.ctfassets.net/mmeshd7gafk1/jW258Um5YCpwOTHNgEokq/2b58f314b180705969b3193bb3dda90e/Phone_HP_Category_Tablet_desktop.jpg"
-    }, 
-    {
-        title: "Consolas",
-        imageSrc: "https://www.backmarket.es/cdn-cgi/image/format%3Dauto%2Cquality%3D75%2Cwidth%3D1920/https://images.ctfassets.net/mmeshd7gafk1/5Q6Fw32r8NELQcVLLxxqim/2a4d26bb2941ba6a3a49c640dcb02450/Phone_HP_Category_Gaming_desktop.jpg"
     }
 ]
 
@@ -26,7 +22,7 @@ export default function TrendingSearches() {
             <SectionTitle title='Compra los "más buscados"' />
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {trendingSearches.map((item) => (
-                    <Link to={`/products/${item.title.toLowerCase()}`} className="space-y-1">
+                    <Link key={item.title} to={`/products/${item.title.toLowerCase()}`} className="space-y-1">
                         <img src={item.imageSrc} className="rounded-xl object-cover transition-shadow duration-300 hover:shadow-lg cursor-pointer" />
                         <p className="px-1 font-bold text-lg">{item.title}</p>
                     </Link>

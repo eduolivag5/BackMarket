@@ -6,7 +6,7 @@ import { Gallery } from "../Gallery";
 
 interface ColorsOptionsProps {
     itemImages: Product["images"]
-    itemColors: Product["color"]
+    itemColors: Product["colors"]
 }
 
 export default function ColorsOptions({itemImages, itemColors} : ColorsOptionsProps) {

@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
   	extend: {
+		fontFamily: {
+			'dm-serif': ['DM Serif Display', 'serif'],
+		},
   		scrollBehavior: {
   			smooth: 'smooth'
   		},

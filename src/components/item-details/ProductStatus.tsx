@@ -3,29 +3,8 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { Product } from "../../types";
-
-const statuses = [
-    {
-        estado: "Correcto",
-        screen_tags: ["Puede tener arañazos leves", "Piezas revisadas"],
-        case_tags: ["Marcas visibles de uso", "Piezas revisadas", "Batería para uso diario"]
-    },
-    {
-        estado: "Bueno",
-        screen_tags: ["Impecable", "Piezas revisadas"],
-        case_tags: ["Leves marcas de uso", "Piezas revisadas", "Batería para uso diario"]
-    },
-    {
-        estado: "Excelente",
-        screen_tags: ["Impecable", "Piezas revisadas"],
-        case_tags: ["Casi sin marcas de uso", "Piezas revisadas", "Batería para uso diario"]
-    },
-    {
-        estado: "Premium",
-        screen_tags: ["Impecable"],
-        case_tags: ["Sin marcas de uso", "Mejor calidad", "Piezas de Apple", "Batería para un uso intenso"]
-    },
-]
+import { useQuery } from "@tanstack/react-query";
+import { getAllSalesStatus } from "../../api";
 
 interface ProductStatusProps {
     itemPrices: Product["prices"]
@@ -33,8 +12,20 @@ interface ProductStatusProps {
 
 export default function ProductStatus({itemPrices} : ProductStatusProps) {
 
+    const {data: salesStatus} = useQuery({
+        queryKey: ['sales-status-list'],
+        queryFn: getAllSalesStatus
+    })
+
+    const sortedItemPrices = [...itemPrices].sort((a, b) => {
+        const orderA = salesStatus?.find(s => s.estado === a.status)?.order ?? Infinity;
+        const orderB = salesStatus?.find(s => s.estado === b.status)?.order ?? Infinity;
+        return orderA - orderB;
+    });
+
     const [selectedStatus, setSelectedStatus] = useState<string>("Correcto");
 
+    if (salesStatus)
     return (
         <div className='md:grid md:grid-cols-3 items-center space-y-4 md:space-y-0 gap-10'>
             <div className='col-span-1'>
@@ -43,12 +34,12 @@ export default function ProductStatus({itemPrices} : ProductStatusProps) {
                         {
                             src: `/status/${selectedStatus.toLowerCase()}_pantalla.avif`, 
                             title: "Pantalla",
-                            tags: statuses.find((item) => item.estado === selectedStatus)?.screen_tags
+                            tags: salesStatus.find((item) => item.estado === selectedStatus)?.screen_tags
                         }, 
                         {
                             src: `/status/${selectedStatus.toLowerCase()}_carcasa.avif`,
                             title: "Carcasa",
-                            tags: statuses.find((item) => item.estado === selectedStatus)?.case_tags
+                            tags: salesStatus.find((item) => item.estado === selectedStatus)?.case_tags
                         }
                     ]} 
                 />
@@ -57,7 +48,7 @@ export default function ProductStatus({itemPrices} : ProductStatusProps) {
             <div className='md:col-span-2 md:px-20'>
                 <h1 className="text-xl font-medium mb-4">Selecciona la condición</h1>
                 <div className="grid grid-cols-2 gap-2">
-                    {itemPrices.map((status) =>
+                    {sortedItemPrices.map((status) =>
                         <Button
                             key={status.status}
                             onClick={() => setSelectedStatus(status.status)}

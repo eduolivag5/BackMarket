@@ -11,11 +11,10 @@ export default function ProductItem({ item } : ItemProps) {
     return (
         <Link to={`/products/details/${item.id}`} className="p-4 rounded-lg">
             <div className="flex justify-center">
-                <Image src={item.images[0]} alt={item.modelo} className="w-40" />
+                <Image src={item.images[0]} alt={item.name_short} className="w-40" />
             </div>
             <div className="mt-4">
-                <p className="font-extrabold">{item.modelo}</p>
-                <p className="font-light text-gray-500 text-sm">{item.color[0]} - {item.almacenamiento[0]} GB</p>
+                <p className="font-extrabold">{item.name_short}</p>
             </div>
             <div className="mt-4">
                 <p className="font-extralight text-xs">Desde</p>

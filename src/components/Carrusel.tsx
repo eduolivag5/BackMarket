@@ -1,7 +1,6 @@
 import { Card } from "@heroui/react"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel"
 import { Product, Review } from "../types"
-import SectionTitle from "./layout/SectionTitle";
 import React from "react";
 
 interface CarruselType {
@@ -16,7 +15,7 @@ export function Carrusel({ title, format, itemsList, ElementToRender } : Carruse
     return (
         <Carousel>
             <div className="flex items-center justify-between mb-2">
-                <SectionTitle title={title} />
+                <span className="font-semibold text-xl">{title}</span>
                 <div className="hidden md:flex gap-2 items-center">
                     <CarouselPrevious />
                     <CarouselNext />

@@ -33,14 +33,14 @@ export default function ReviewItem({ item }: ReviewItemProps) {
                         {item.comment}
                     </p>
                 </div>
-                <p className="pr-10 p-4 text-sm font-bold">{item.modelo}</p>
+                <p className="pr-10 p-4 text-sm font-bold">{item.model}</p>
             </div>
 
             <Drawer isOpen={isOpen} size="2xl" onClose={() => setIsOpen(!isOpen)}>
                 <DrawerContent>
                 {(onClose) => (
                     <>
-                        <DrawerHeader>{item.modelo}</DrawerHeader>
+                        <DrawerHeader>{item.model}</DrawerHeader>
                         <DrawerBody>
                             <div className="flex gap-4 h-full">
                                 <div className="flex-1">
@@ -58,7 +58,7 @@ export default function ReviewItem({ item }: ReviewItemProps) {
 
                                     <div className="bg-gray-100 rounded-lg p-1 px-4 w-full">
                                         <Link to={`/details/${item.product_id}`} className="font-bold">
-                                            {item.modelo} {'>'}
+                                            {item.model} {'>'}
                                         </Link>
                                     </div>
                                     

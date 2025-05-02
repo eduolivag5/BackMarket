@@ -1,5 +1,6 @@
 import { Card } from "@heroui/react";
 import YouTubeEmbed from "../components/YoutubeEmbed";
+import SectionTitle from "../components/SectionTitle";
 
 interface Add {
     title: string
@@ -39,13 +40,12 @@ const tips: Tip[] = [
 export default function EndFastTech() {
     return (
         <div className="space-y-10">
-            <div className="space-y-2 text-center">
-                <h1 className="text-5xl font-bold">Acabemos con la fast tech.</h1>
-                <p className="text-lg font-medium">
-                    La tecnología es ahora más potente, innovadora y avanzada que nunca.<br />
-                    Entonces, ¿por qué cada año vamos corriendo detrás del último modelo?
-                </p>
-            </div>
+
+            <SectionTitle
+                title="Acabemos con la fast tech."
+                subtitle="La tecnología es ahora más potente, innovadora y avanzada que nunca.
+                    Entonces, ¿por qué cada año vamos corriendo detrás del último modelo?"
+            />
 
             <div>
                 <YouTubeEmbed />
@@ -79,7 +79,7 @@ export default function EndFastTech() {
                 )}
             </div>
 
-            <h1 className="text-4xl font-bold text-center">Cambia el chip <br/>(y no el móvil)</h1>
+            <SectionTitle title="Cambia el chip (y no el móvil)" />
 
             <div className="flex flex-col md:flex-row gap-4">
                 {tips.map((tip) => 

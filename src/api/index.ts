@@ -1,4 +1,4 @@
-import { CategoriesListSchema, CategorySchema, ProductSchema, ProductsListSchema, ReviewsListSchema } from "../types";
+import { BrandsListSchema, CategoriesListSchema, Category, CategorySchema, ProductSchema, ProductsListSchema, ReviewsListSchema, StatusListSchema } from "../types";
 
 const API_ENDPOINT = 'https://backmarket-api.onrender.com'
 
@@ -163,8 +163,6 @@ export async function getCategoryInfo(id?: string) {
     try {
         const response = await fetch(url);
 
-        console.log(response)
-
         if (!response.ok) {
             throw new Error("Error al obtener las categorias.");
         }
@@ -186,5 +184,67 @@ export async function getCategoryInfo(id?: string) {
 
     } catch (err) {
         throw new Error("Error al obtener las reviews.");
+    }
+}
+
+export async function getBrandsByCategory(id_category?: Category["id"]) {
+    const url = `${API_ENDPOINT}/brands?category=${id_category}`
+
+    try {
+        const response = await fetch(url);
+
+        console.log(response)
+
+        if (!response.ok) {
+            throw new Error("Error al obtener las marcas.");
+        }
+
+        const data = await response.json();
+
+        if (data.error) {
+            throw new Error(data.message || "Error desconocido en la respuesta");
+        }
+
+        const result = BrandsListSchema.safeParse(data.data);
+
+        if (!result.success) {
+            console.log(result.error)
+            throw new Error("Error de validación de las marcas.");
+        }
+
+        return result.data;
+
+    } catch (err) {
+        throw new Error("Error al obtener las marcas.");
+    }
+}
+
+export async function getAllSalesStatus() {
+    const url = `${API_ENDPOINT}/phone_status`
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Error al obtener los estados de venta.");
+        }
+
+        const data = await response.json();
+
+        if (data.error) {
+            throw new Error(data.message || "Error desconocido en la respuesta");
+        }
+
+        const result = StatusListSchema.safeParse(data.data);
+
+        if (!result.success) {
+            console.log(result.error)
+            throw new Error("Error de validación de los estados de venta.");
+        }
+
+        return result.data;
+
+    } catch (err) {
+        throw new Error("Error al obtener los estados de venta.");
     }
 }

@@ -19,7 +19,7 @@ export default function ProductsTags() {
             <SellConditions />
 
             <div>
-                <h1 className='font-bold text-4xl'>{tags} reacondicionados</h1>
+                <h1 className='font-bold font-dm-serif text-4xl'>{tags} reacondicionados</h1>
                 <p className='text-sm'>
                     Según un estudio reciente, los iPhone reacondicionados también pueden ser mucho más baratos y 
                     fáciles de comprar: vienen con 2 años de garantía, 30 días de prueba, opción de pago a plazos y 
