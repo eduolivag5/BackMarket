@@ -57,7 +57,7 @@ export default function ReviewItem({ item }: ReviewItemProps) {
                                     <p className="text-sm leading-relaxed">{item.comment}</p>
 
                                     <div className="bg-gray-100 rounded-lg p-1 px-4 w-full">
-                                        <Link to={`/details/${item.product_id}`} className="font-bold">
+                                        <Link to={`/products/details/${item.product_id}`} className="font-bold">
                                             {item.model} {'>'}
                                         </Link>
                                     </div>

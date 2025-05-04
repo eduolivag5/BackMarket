@@ -7,11 +7,11 @@ import SellConditions from '../components/SellConditions';
 
 export default function ProductsTags() {
 
-    const { tags } = useParams();
+    const { id, tags } = useParams();
 
     const { data: productsList } = useQuery({
         queryKey: [`products-list-${tags}`],
-        queryFn: () => getProductsFiltered(undefined, tags)
+        queryFn: () => getProductsFiltered(id, tags)
     })
 
     return (

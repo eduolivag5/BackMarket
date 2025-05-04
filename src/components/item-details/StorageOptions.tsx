@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Image } from "@heroui/react";
-import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 
 interface StorageOptionsProps {
@@ -10,8 +9,6 @@ interface StorageOptionsProps {
 export default function StorageOptions({storageOptionsList} : StorageOptionsProps) {
 
     const [selectedStorage, setSelectedStorage] = useState<number>(storageOptionsList[0]);
-
-    console.log(selectedStorage)
 
     return (
         <div className='md:grid md:grid-cols-3 items-center space-y-4 md:space-y-0 gap-10'>
@@ -27,11 +24,13 @@ export default function StorageOptions({storageOptionsList} : StorageOptionsProp
                 <h1 className="text-xl font-medium mb-4">Selecciona el almacenamiento</h1>
                 <div className="space-y-2">
                     {storageOptionsList.map((storage) =>
-                        <Button
+                        <div
                             key={storage}
                             onClick={() => setSelectedStorage(storage)}
-                            variant={selectedStorage === storage ? 'default' : 'outline'}
-                            className="w-full py-8 text-left flex items-center justify-start gap-8"
+                            className={`
+                                whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0
+                                h-9 px-4 cursor-pointer
+                                w-full py-8 text-left flex items-center justify-start gap-8 ${selectedStorage === storage ? 'bg-primary text-primary-foreground shadow hover:bg-primary/90' : 'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground'}`}
                         >
                             <Checkbox
                                 checked={selectedStorage === storage}                                
@@ -41,7 +40,7 @@ export default function StorageOptions({storageOptionsList} : StorageOptionsProp
                                 <span className="font-bold">{storage} GB</span>
                                 <span className="font-light">Precio $$</span>
                             </div>
-                        </Button>
+                        </div>
                     )}
                 </div>                
             </div>

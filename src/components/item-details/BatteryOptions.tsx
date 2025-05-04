@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Image } from "@heroui/react";
 import { BatteryIcon } from "lucide-react";
-import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 
 interface BatteryOption {
@@ -42,11 +41,13 @@ export default function BatteryOptions() {
                 </div>
                 <div className="space-y-2">
                     {BatteryOptionsList.map((battery) => 
-                        <Button
+                        <div
                             key={battery.title}
                             onClick={() => setSelectedBattery(battery)}
-                            variant={selectedBattery === battery ? 'default' : 'outline'}
-                            className="w-full py-8 text-left flex items-center justify-start gap-8"
+                            className={`
+                                whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0
+                                h-9 px-4 cursor-pointer
+                                w-full py-8 text-left flex items-center justify-start gap-8 ${selectedBattery === battery ? 'bg-primary text-primary-foreground shadow hover:bg-primary/90' : 'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground'}`}
                         >
                             <Checkbox
                                 checked={selectedBattery === battery} 
@@ -59,7 +60,7 @@ export default function BatteryOptions() {
                                 </div>
                                 <span className="font-light">Precio $$</span>
                             </div>
-                        </Button>
+                        </div>
                     )}
                 </div>                
             </div>

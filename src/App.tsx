@@ -29,6 +29,7 @@ export default function App() {
                     <Route path="/products/details/:id" element={<ItemDetails />} />
                     <Route path="/products/:tags" element={<ProductsTags />} />
                     <Route path="/category/:id" element={<CategoryDetails />} />
+                    <Route path="/category/:id/:tags" element={<ProductsTags />} />
                     <Route path="/end-fast-tech" element={<EndFastTech />} />
                 </Routes>
             </div>
