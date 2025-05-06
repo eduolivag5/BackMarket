@@ -96,3 +96,9 @@ export interface faqItem {
   question: string
   answer: string
 }
+
+/* BATTERY */
+export interface BatteryOption {
+  title: string
+  description: string
+}

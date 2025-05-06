@@ -1,32 +1,27 @@
 import { Gallery } from "../Gallery";
-import { useState } from "react";
 import { Checkbox } from "../ui/checkbox";
-import { Product } from "../../types";
-import { useQuery } from "@tanstack/react-query";
-import { getAllSalesStatus } from "../../api";
+import { Product, StatusList } from "../../types";
+import { Dispatch, SetStateAction } from "react";
 
 interface ProductStatusProps {
-    itemPrices: Product["prices"]
+    salesStatus: StatusList
+    sortedItemPrices: Product["prices"]
+    selectedStatus: string
+    setSelectedStatus: Dispatch<SetStateAction<string>>
 }
 
-export default function ProductStatus({itemPrices} : ProductStatusProps) {
-
-    const {data: salesStatus} = useQuery({
-        queryKey: ['sales-status-list'],
-        queryFn: getAllSalesStatus
-    })
-
-    const sortedItemPrices = [...itemPrices].sort((a, b) => {
-        const orderA = salesStatus?.find(s => s.estado === a.status)?.order ?? Infinity;
-        const orderB = salesStatus?.find(s => s.estado === b.status)?.order ?? Infinity;
-        return orderA - orderB;
-    });
-
-    const [selectedStatus, setSelectedStatus] = useState<string>(sortedItemPrices[0].status);
-
-    if (salesStatus)
+export default function ProductStatus({salesStatus, sortedItemPrices, selectedStatus, setSelectedStatus} : ProductStatusProps) {
+    
+    const handleOptionClick = (status: string) => {
+        setSelectedStatus(status)
+        const target = document.getElementById("battery-options");
+        if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+        }
+    }
+    
     return (
-        <div className='md:grid md:grid-cols-3 items-center space-y-4 md:space-y-0 gap-10'>
+        <div id="product-status" className='md:grid md:grid-cols-3 items-center space-y-4 md:space-y-0 gap-10'>
             <div className='col-span-1'>
                 <Gallery 
                     image_urls={[
@@ -50,7 +45,7 @@ export default function ProductStatus({itemPrices} : ProductStatusProps) {
                     {sortedItemPrices.map((status) =>
                         <div
                             key={status.status}
-                            onClick={() => setSelectedStatus(status.status)}
+                            onClick={() => handleOptionClick(status.status)}
                             className={`
                                 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0
                                 h-9 px-4 cursor-pointer
@@ -58,11 +53,11 @@ export default function ProductStatus({itemPrices} : ProductStatusProps) {
                         >
                             <Checkbox
                                 checked={selectedStatus.toLowerCase() === status.status.toLowerCase()}
-                                onClick={() => setSelectedStatus(status.status)}
+                                onClick={() => handleOptionClick(status.status)}
                             />                         
                             <div className="text-left">
                                 <p className="font-bold">{status.status}</p>
-                                <p className="font-light">{status.price}$</p>
+                                <p className="font-light">{status.price.toFixed(2)} €</p>
                             </div>
                         </div>
                     )}

@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllProducts } from "../api";
 import { Link } from "react-router-dom";
 import SectionTitle from "../components/SectionTitle";
+import { useEffect } from "react";
 
 
 export default function Home() {
@@ -14,6 +15,10 @@ export default function Home() {
         queryFn: getAllProducts,
         queryKey: ['all-products']
     })
+
+    useEffect(() => {
+        document.title = "Productos reacondicionados y mejores para el planeta | BackMarket"       
+    }, [])
 
     return (
         <div className="h-full space-y-20">

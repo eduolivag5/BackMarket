@@ -4,22 +4,29 @@ import { getProductsFiltered } from '../api';
 import WhyToBuy from '../components/WhyToBuy';
 import ProductsGrid from '../components/ProductsGrid';
 import SellConditions from '../components/SellConditions';
+import { useEffect } from 'react';
 
 export default function ProductsTags() {
 
     const { id, tags } = useParams();
 
     const { data: productsList } = useQuery({
-        queryKey: [`products-list-${tags}`],
-        queryFn: () => getProductsFiltered(id, tags)
+        queryKey: [`products-list-${tags?.toLowerCase()}`],
+        queryFn: () => getProductsFiltered(id, tags?.toLowerCase())
     })
+
+    useEffect(() => {
+        if (tags) {
+            document.title = `${tags} reacondicionados` 
+        }        
+    }, [tags])
 
     return (
         <div className='space-y-8'>
             <SellConditions />
 
             <div>
-                <h1 className='font-bold font-dm-serif text-4xl'>{tags} reacondicionados</h1>
+                <h1 className='font-medium font-dm-serif text-4xl'>{tags} reacondicionados</h1>
                 <p className='text-sm'>
                     Según un estudio reciente, los iPhone reacondicionados también pueden ser mucho más baratos y 
                     fáciles de comprar: vienen con 2 años de garantía, 30 días de prueba, opción de pago a plazos y 

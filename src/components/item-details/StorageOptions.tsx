@@ -1,17 +1,26 @@
-import { useState } from "react";
 import { Image } from "@heroui/react";
 import { Checkbox } from "../ui/checkbox";
+import { Dispatch, SetStateAction } from "react";
 
 interface StorageOptionsProps {
     storageOptionsList: number[]
+    selectedStorage: number
+    setSelectedStorage: Dispatch<SetStateAction<number>>
+    storagePrices: Record<number, number>
 }
 
-export default function StorageOptions({storageOptionsList} : StorageOptionsProps) {
+export default function StorageOptions({storageOptionsList, selectedStorage, setSelectedStorage, storagePrices} : StorageOptionsProps) { 
 
-    const [selectedStorage, setSelectedStorage] = useState<number>(storageOptionsList[0]);
-
+    const handleOptionClick = (storage: number) => {
+        setSelectedStorage(storage)
+        const target = document.getElementById("colors-options");
+        if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+        }
+    }
+    
     return (
-        <div className='md:grid md:grid-cols-3 items-center space-y-4 md:space-y-0 gap-10'>
+        <div id="storage-options" className='pt-20 md:grid md:grid-cols-3 items-center space-y-4 md:space-y-0 gap-10'>
             <div className='col-span-1'>
                 <Image
                     alt="Opciones de almacenamiento"
@@ -26,7 +35,7 @@ export default function StorageOptions({storageOptionsList} : StorageOptionsProp
                     {storageOptionsList.map((storage) =>
                         <div
                             key={storage}
-                            onClick={() => setSelectedStorage(storage)}
+                            onClick={() => handleOptionClick(storage)}
                             className={`
                                 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0
                                 h-9 px-4 cursor-pointer
@@ -34,11 +43,13 @@ export default function StorageOptions({storageOptionsList} : StorageOptionsProp
                         >
                             <Checkbox
                                 checked={selectedStorage === storage}                                
-                                onClick={() => setSelectedStorage(storage)}
+                                onClick={() => handleOptionClick(storage)}
                             />
                             <div className="flex justify-between items-center gap-4 md:gap-8 w-full">
                                 <span className="font-bold">{storage} GB</span>
-                                <span className="font-light">Precio $$</span>
+                                <span className="font-light">
+                                    {storagePrices[storage] === 0 ? "Incluido" : `+${storagePrices[storage].toFixed(2)} €`}
+                                </span>
                             </div>
                         </div>
                     )}

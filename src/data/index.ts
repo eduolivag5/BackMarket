@@ -1,5 +1,5 @@
 import { Headphones, RefreshCcw, ShieldCheck, Truck } from "lucide-react";
-import { faqItem, sellConditionItem } from "../types";
+import { BatteryOption, faqItem, sellConditionItem } from "../types";
 
 export const sellConditions: sellConditionItem[] = [
     {
@@ -41,3 +41,16 @@ export const faqList: faqItem[] = [
     answer: "Por supuesto que puedes obtener tu móvil financiado, y para ello puedes hacerlo a través de Oney. Puedes financiar la compra en 3, 4 o 6 plazos y tienes 14 días para renunciar al crédito."
   }
 ]
+
+
+
+// Opciones de batería
+export const BatteryOptionsList: BatteryOption[] = [
+    { title: "Batería estándar", description: "Ideal para un uso diario" },
+    { title: "Batería nueva", description: "Lo mejor para un uso intensivo" }
+];
+
+export const batteryPrices: Record<string, number> = {
+    "Batería estándar": 0,
+    "Batería nueva": 20
+};

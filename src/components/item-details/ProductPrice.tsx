@@ -33,16 +33,16 @@ export default function ProductPrice({ item } : {item: Product}) {
 
             <div className="flex gap-4">
                 <div id={`price-${item.id}`} className="md:flex-1">
-                    <p className="text-xl font-bold">
-                        {lowPrice.toFixed(2)}$
+                    <p className="text-2xl font-bold">
+                        {lowPrice.toFixed(2)} €
                     </p>
                     <div id={`disccount-${item.id}`} className="flex gap-2 items-center">
                         <span className="font-medium text-xs md:text-sm line-through">
-                            {highPrice.toFixed(2)}€ nuevo
+                            {highPrice.toFixed(2)} € nuevo
                         </span>
                         <Chip color="success"variant="flat">
                             <p className="text-xs md:text-sm font-bold">
-                                Ahorra {(highPrice - lowPrice).toFixed(2)}€
+                                Ahorra {(highPrice - lowPrice).toFixed(2)} €
                             </p>
                         </Chip>
                     </div>

@@ -4,6 +4,7 @@ import { getCategoryInfo, getProductsFiltered } from '../api';
 import { FAQ } from '../components/FAQ';
 import ProductsGrid from '../components/ProductsGrid';
 import Brands from '../components/Brands';
+import { useEffect } from 'react';
 
 export default function CategoryDetails() {
 
@@ -18,12 +19,18 @@ export default function CategoryDetails() {
         queryKey: [`category-info-${id}`],
         queryFn: () => getCategoryInfo(id),
     });
+
+    useEffect(() => {
+        if (categoryInfo) {
+            document.title = `${categoryInfo.name} reacondicionados` 
+        }        
+    }, [categoryInfo])
     
 
     return (
         <div className='space-y-10'>
 
-            <h1 className='text-5xl font-bold font-dm-serif'>{categoryInfo?.name} reacondicionados</h1>
+            <h1 className='text-5xl font-medium font-dm-serif'>{categoryInfo?.name} reacondicionados</h1>
 
             {categoryInfo && <Brands category={categoryInfo} />}
 

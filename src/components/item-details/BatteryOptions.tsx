@@ -1,30 +1,28 @@
-import { useState } from "react";
 import { Image } from "@heroui/react";
 import { BatteryIcon } from "lucide-react";
 import { Checkbox } from "../ui/checkbox";
+import { BatteryOption } from "../../types";
+import { Dispatch, SetStateAction } from "react";
 
-interface BatteryOption {
-    title: string
-    description: string
+interface BatteryOptionsProps {
+    batteryOptionsList: BatteryOption[]
+    selectedBattery: BatteryOption
+    setSelectedBattery: Dispatch<SetStateAction<BatteryOption>>
+    batteryPrices: Record<string, number>
 }
 
-const BatteryOptionsList: BatteryOption[] = [
-    {
-        title: "Batería estándar",
-        description: "Ideal para un uso diario"
-    },
-    {
-        title: "Batería nueva",
-        description: "Lo mejor para un uso intensivo"
+export default function BatteryOptions({ batteryOptionsList, selectedBattery, setSelectedBattery, batteryPrices } : BatteryOptionsProps) {
+
+    const handleOptionClick = (battery: BatteryOption) => {
+        setSelectedBattery(battery)
+        const target = document.getElementById("storage-options");
+        if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+        }
     }
-]
-
-export default function BatteryOptions() {
-
-    const [selectedBattery, setSelectedBattery] = useState<BatteryOption>(BatteryOptionsList[0]);
-
+    
     return (
-        <div className='md:grid md:grid-cols-3 items-center space-y-4 md:space-y-0 gap-10'>
+        <div id="battery-options" className='pt-20 md:grid md:grid-cols-3 items-center space-y-4 md:space-y-0 gap-10'>
             <div className='col-span-1'>
                 <Image
                     alt="Opciones de almacenamiento"
@@ -40,10 +38,10 @@ export default function BatteryOptions() {
                     Todos los productos tienen garantizada una batería en buen estado.
                 </div>
                 <div className="space-y-2">
-                    {BatteryOptionsList.map((battery) => 
+                    {batteryOptionsList.map((battery) => 
                         <div
                             key={battery.title}
-                            onClick={() => setSelectedBattery(battery)}
+                            onClick={() => handleOptionClick(battery)}
                             className={`
                                 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0
                                 h-9 px-4 cursor-pointer
@@ -51,14 +49,14 @@ export default function BatteryOptions() {
                         >
                             <Checkbox
                                 checked={selectedBattery === battery} 
-                                onClick={() => setSelectedBattery(battery)} 
+                                onClick={() => handleOptionClick(battery)} 
                             />                            
                             <div className="flex justify-between items-center gap-4 md:gap-8 w-full">
                                 <div>
                                     <p className="font-bold">{battery.title}</p>
                                     <p className="font-light text-sm">{battery.description}</p>
                                 </div>
-                                <span className="font-light">Precio $$</span>
+                                <span className="font-light">{batteryPrices[battery.title] === 0 ? "Incluido" : `+${batteryPrices[battery.title].toFixed(2)} €`}</span>
                             </div>
                         </div>
                     )}

@@ -25,7 +25,7 @@ export async function getAllProducts() {
             throw new Error("Error de validación de los productos");
         }
 
-        return result.data;
+        return result.data.filter(product => product.prices.length > 0);
 
     } catch (err) {
         throw new Error("Error al obtener los productos");
@@ -90,7 +90,7 @@ export async function getProductsFiltered(category?: string, tags?: string) {
             throw new Error("Error de validación de los productos");
         }
 
-        return result.data;
+        return result.data.filter(product => product.prices.length > 0);
 
     } catch (err) {
         throw new Error("Error al obtener los productos");
@@ -192,8 +192,6 @@ export async function getBrandsByCategory(id_category?: Category["id"]) {
 
     try {
         const response = await fetch(url);
-
-        console.log(response)
 
         if (!response.ok) {
             throw new Error("Error al obtener las marcas.");

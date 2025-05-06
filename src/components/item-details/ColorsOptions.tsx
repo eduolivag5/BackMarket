@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { Checkbox } from "../ui/checkbox";
 import { Product } from "../../types";
 import { Gallery } from "../Gallery";
@@ -6,14 +6,23 @@ import { Gallery } from "../Gallery";
 interface ColorsOptionsProps {
     itemImages: Product["images"]
     itemColors: Product["colors"]
+    selectedColor: string
+    setSelectedColor: Dispatch<SetStateAction<string>>
+    colorPrices: Record<string, number>
 }
 
-export default function ColorsOptions({itemImages, itemColors} : ColorsOptionsProps) {
+export default function ColorsOptions({itemImages, itemColors, selectedColor, setSelectedColor, colorPrices} : ColorsOptionsProps) {
 
-    const [selectedColor, setSelectedColor] = useState<string>(itemColors[0]);
-
+    const handleOptionClick = (color: string) => {
+        setSelectedColor(color)
+        const target = document.getElementById("price-result");
+        if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+        }
+    }
+    
     return (
-        <div className='md:grid md:grid-cols-3 items-center space-y-4 md:space-y-0 gap-10'>
+        <div id="colors-options" className='py-20 md:grid md:grid-cols-3 items-center space-y-4 md:space-y-0 gap-10'>
             <div className='col-span-1'>
                 <Gallery
                     image_urls={
@@ -32,7 +41,7 @@ export default function ColorsOptions({itemImages, itemColors} : ColorsOptionsPr
                     {itemColors.map((color) => 
                         <div
                             key={color}
-                            onClick={() => setSelectedColor(color)}
+                            onClick={() => handleOptionClick(color)}
                             className={`
                                 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0
                                 h-9 px-4 cursor-pointer
@@ -40,11 +49,11 @@ export default function ColorsOptions({itemImages, itemColors} : ColorsOptionsPr
                         >
                             <Checkbox
                                 checked={selectedColor === color} 
-                                onClick={() => setSelectedColor(color)} 
+                                onClick={() => handleOptionClick(color)} 
                             />                            
                             <div>
                                 <p className="font-bold">{color}</p>
-                                <span className="font-light">Precio $$</span>
+                                <span className="font-light">+{colorPrices[color].toFixed(2) || 0} €</span>
                             </div>
                         </div>
                     )}

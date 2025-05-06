@@ -1,14 +1,11 @@
 import { Gallery } from "../components/Gallery";
 import Checkpoints from "../components/Checkpoints";
 import ProductPrice from "../components/item-details/ProductPrice";
-import ProductStatus from "../components/item-details/ProductStatus";
-import StorageOptions from "../components/item-details/StorageOptions";
-import BatteryOptions from "../components/item-details/BatteryOptions";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getProductDetailsById } from "../api";
-import ColorsOptions from "../components/item-details/ColorsOptions";
 import { useEffect } from "react";
+import ProductConfigurator from "../components/item-details/ProductConfigurator";
 
 export default function ItemDetails() {
 
@@ -45,15 +42,9 @@ export default function ItemDetails() {
                 </div>
             </div>
 
-            <Checkpoints />
+            <Checkpoints />         
 
-            {/* OPCIONES DE SELECCIÓN */}
-            <div id="buy" className="py-20 space-y-20">
-                <ProductStatus itemPrices={item.prices} />
-                <BatteryOptions />
-                <StorageOptions storageOptionsList={item.storages} />
-                <ColorsOptions itemImages={item.images} itemColors={item.colors} />
-            </div>
+            <ProductConfigurator item={item} />
             
         </div>
     )

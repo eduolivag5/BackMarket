@@ -6,12 +6,14 @@ import {
     NavbarMenuToggle,
     NavbarMenu,
     NavbarMenuItem,
-    Avatar
+    ToastProvider,
+    addToast
 } from "@heroui/react";
 import { useQuery } from "@tanstack/react-query";
 import { NavLink, Link } from "react-router-dom";
 import { getAllCategories } from "../../api";
 import { useState } from "react";
+import { User } from "lucide-react";
 
 export default function NavbarComponent() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,7 +24,11 @@ export default function NavbarComponent() {
     });
 
     return (
+        <>
+        <ToastProvider placement="top-right" toastOffset={60} />
+        
         <Navbar onMenuOpenChange={setIsMenuOpen}>
+            
             {/* Contenido izquierdo con toggle y logo */}
             <NavbarContent>
                 <NavbarMenuToggle
@@ -55,7 +61,13 @@ export default function NavbarComponent() {
             {/* Avatar lado derecho */}
             <NavbarContent justify="end">
                 <NavbarItem>
-                    <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
+                    <User className="cursor-pointer" onClick={() => {
+                        addToast({
+                            title: "¡Ops!",
+                            description: "Esta función no está habilitada.",
+                            color: "primary"
+                        })
+                    }} />
                 </NavbarItem>
             </NavbarContent>
 
@@ -73,5 +85,6 @@ export default function NavbarComponent() {
                 ))}
             </NavbarMenu>
         </Navbar>
+        </>
     );
 }
