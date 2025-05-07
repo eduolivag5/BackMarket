@@ -30,7 +30,7 @@ export default function CategoryDetails() {
     return (
         <div className='space-y-10'>
 
-            <h1 className='text-5xl font-medium font-dm-serif'>{categoryInfo?.name} reacondicionados</h1>
+            <h1 className='text-4xl md:text-5xl font-medium font-dm-serif'>{categoryInfo?.name} reacondicionados</h1>
 
             {categoryInfo && <Brands category={categoryInfo} />}
 

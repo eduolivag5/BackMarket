@@ -24,7 +24,10 @@ export function Carrusel({ title, format, itemsList, ElementToRender } : Carruse
             <CarouselContent>
                 {itemsList
                     .map((item) => (
-                        <CarouselItem key={item.id} className={`basis-1/2 ${format === "compact" ? "md:basis-1/4" : "md:basis-1/5"}`}>
+                        <CarouselItem
+                            key={item.id}
+                            className={`!basis-[66.66%] ${format === "compact" ? "md:!basis-[33.33%]" : "md:!basis-[20%]"}`}
+                        >
                             <Card className="h-full shadow-none border border-gray-300">
                                 <ElementToRender item={item} />
                             </Card>

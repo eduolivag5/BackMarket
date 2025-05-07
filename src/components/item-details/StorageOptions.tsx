@@ -37,17 +37,23 @@ export default function StorageOptions({storageOptionsList, selectedStorage, set
                             key={storage}
                             onClick={() => handleOptionClick(storage)}
                             className={`
-                                whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0
-                                h-9 px-4 cursor-pointer
-                                w-full py-8 text-left flex items-center justify-start gap-8 ${selectedStorage === storage ? 'bg-primary text-primary-foreground shadow hover:bg-primary/90' : 'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground'}`}
+                                rounded-md text-sm font-medium transition-colors 
+                                focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring 
+                                disabled:pointer-events-none disabled:opacity-50
+                                px-4 cursor-pointer w-full py-4 text-left 
+                                flex items-center justify-start gap-4 md:gap-8
+                                ${selectedStorage === storage 
+                                    ? 'bg-primary text-primary-foreground shadow hover:bg-primary/90' 
+                                    : 'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground'}
+                            `}
                         >
                             <Checkbox
                                 checked={selectedStorage === storage}                                
                                 onClick={() => handleOptionClick(storage)}
                             />
-                            <div className="flex justify-between items-center gap-4 md:gap-8 w-full">
-                                <span className="font-bold">{storage} GB</span>
-                                <span className="font-light">
+                            <div className="flex justify-between items-center w-full gap-4">
+                                <span className="font-bold leading-snug break-words">{storage} GB</span>
+                                <span className="font-light shrink-0">
                                     {storagePrices[storage] === 0 ? "Incluido" : `+${storagePrices[storage].toFixed(2)} €`}
                                 </span>
                             </div>

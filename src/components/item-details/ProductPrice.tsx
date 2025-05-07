@@ -31,12 +31,12 @@ export default function ProductPrice({ item } : {item: Product}) {
                 {item.name}
             </p>
 
-            <div className="flex gap-4">
+            <div className="flex flex-col md:flex-row gap-4">
                 <div id={`price-${item.id}`} className="md:flex-1">
                     <p className="text-2xl font-bold">
                         {lowPrice.toFixed(2)} €
                     </p>
-                    <div id={`disccount-${item.id}`} className="flex gap-2 items-center">
+                    <div id={`disccount-${item.id}`} className="flex gap-2 items-center justify-between">
                         <span className="font-medium text-xs md:text-sm line-through">
                             {highPrice.toFixed(2)} € nuevo
                         </span>

@@ -27,7 +27,7 @@ export default function PriceResult({item, finalPrice, selectedStatus, selectedB
                 <div className="p-4 space-y-4 rounded-md border border-primary">
                     <div className="space-y-1">
                         <h1 className="text-2xl font-bold">{item.name_short}</h1>
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-2">
                             <Chip color="default" variant="faded">{selectedStatus}</Chip>
                             <Chip color="default" variant="faded">{selectedBattery.title}</Chip>
                             <Chip color="default" variant="faded">{selectedStorage}</Chip>
@@ -39,7 +39,7 @@ export default function PriceResult({item, finalPrice, selectedStatus, selectedB
                         <p className="text-2xl font-bold">
                             {finalPrice.toFixed(2)}$
                         </p>
-                        <div id={`disccount-${item.id}`} className={`flex gap-2 items-center ${finalPrice >= highPrice && 'hidden'}`}>
+                        <div id={`disccount-${item.id}`} className={`flex gap-2 items-center justify-between ${finalPrice >= highPrice && 'hidden'}`}>
                             <span className="font-medium text-xs md:text-sm line-through">
                                 {highPrice.toFixed(2)}€ nuevo
                             </span>
