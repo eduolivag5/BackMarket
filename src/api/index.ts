@@ -1,6 +1,6 @@
 import { BrandsListSchema, CategoriesListSchema, Category, CategorySchema, ProductSchema, ProductsListSchema, ReviewsListSchema, StatusListSchema } from "../types";
 
-const API_ENDPOINT = 'https://backmarket-api.onrender.com'
+const API_ENDPOINT = import.meta.env.VITE_API_URL;
 
 export async function getAllProducts() {
     const url = `${API_ENDPOINT}/products`
