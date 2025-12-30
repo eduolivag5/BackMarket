@@ -26,7 +26,7 @@ export default function PriceResult({item, finalPrice, selectedStatus, selectedB
                 <h1 className="text-5xl font-medium mb-4 font-dm-serif">¡Tachán!</h1>
                 <div className="p-4 space-y-4 rounded-md border border-primary">
                     <div className="space-y-1">
-                        <h1 className="text-2xl font-bold">{item.name_short}</h1>
+                        <h1 className="text-2xl font-bold">{item.nameShort}</h1>
                         <div className="flex flex-wrap items-center gap-2">
                             <Chip color="default" variant="faded">{selectedStatus}</Chip>
                             <Chip color="default" variant="faded">{selectedBattery.title}</Chip>

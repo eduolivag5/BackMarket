@@ -15,9 +15,9 @@ export type PricesList = z.infer<typeof PricesListSchema>
 /* PRODUCTOS */
 export const ProductSchema = z.object({
     id: z.string(),
-    created_at: z.string(),
+    createdAt: z.string(),
     brand: z.number(),
-    name_short: z.string(),
+    nameShort: z.string(),
     name: z.string(),
     colors: z.array(z.string()),
     storages: z.array(z.number()),
@@ -38,9 +38,9 @@ export const ReviewSchema = z.object({
   stars: z.number(),
   comment: z.string(),
   image: z.string(),
-  product_id: productIdSchema,
-  model: modeloSchema,
-  name_user: z.string()
+  productId: productIdSchema,
+  productNameShort: modeloSchema,
+  userName: z.string()
 })
 export const ReviewsListSchema = z.array(ReviewSchema);
 
@@ -62,7 +62,7 @@ export type CategoriesList = z.infer<typeof CategoriesListSchema>
 export const BrandSchema = z.object({
   id: z.number(),
   marca: z.string(),
-  img_header: z.string()
+  imgHeader: z.string()
 })
 export const BrandsListSchema = z.array(BrandSchema);
 
@@ -75,8 +75,8 @@ export const StatusSchema = z.object({
   id: z.number(),
   estado: z.string(),
   description: z.string().nullable(),
-  screen_tags: z.array(z.string()),
-  case_tags: z.array(z.string()),
+  screenTags: z.array(z.string()),
+  caseTags: z.array(z.string()),
   order: z.number()
 })
 export const StatusListSchema = z.array(StatusSchema)

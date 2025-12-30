@@ -28,12 +28,12 @@ export default function ProductStatus({salesStatus, sortedItemPrices, selectedSt
                         {
                             src: `/status/${selectedStatus.toLowerCase().replace(' ', '_')}_pantalla.avif`, 
                             title: "Pantalla",
-                            tags: salesStatus.find((item) => item.estado === selectedStatus)?.screen_tags
+                            tags: salesStatus.find((item) => item.estado === selectedStatus)?.screenTags
                         }, 
                         {
                             src: `/status/${selectedStatus.toLowerCase().replace(' ', '_')}_carcasa.avif`,
                             title: "Carcasa",
-                            tags: salesStatus.find((item) => item.estado === selectedStatus)?.case_tags
+                            tags: salesStatus.find((item) => item.estado === selectedStatus)?.caseTags
                         }
                     ]} 
                 />

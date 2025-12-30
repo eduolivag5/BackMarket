@@ -18,7 +18,7 @@ export default function ItemDetails() {
 
     useEffect(() => {
         if (item) {
-            document.title = item.name_short
+            document.title = item.nameShort
         }           
     }, [item])
 

@@ -23,7 +23,7 @@ export default function ReviewItem({ item }: ReviewItemProps) {
                     style={{ backgroundImage: `url(${item.image})` }}
                 >
 
-                    <span className="py-1 px-2 text-sm font-semibold bg-gray-100 rounded-sm">{item.name_user}</span>
+                    <span className="py-1 px-2 text-sm font-semibold bg-gray-100 rounded-sm">{item.userName}</span>
 
                     {/* Sombra degradada */}
                     <div className="absolute bottom-0 left-0 w-full h-2/3 bg-gradient-to-t from-black to-transparent z-10" />
@@ -33,14 +33,14 @@ export default function ReviewItem({ item }: ReviewItemProps) {
                         {item.comment}
                     </p>
                 </div>
-                <p className="pr-10 p-4 text-sm font-bold">{item.model}</p>
+                <p className="pr-10 p-4 text-sm font-bold">{item.productNameShort}</p>
             </div>
 
             <Drawer isOpen={isOpen} size="2xl" onClose={() => setIsOpen(!isOpen)}>
                 <DrawerContent>
                 {(onClose) => (
                     <>
-                        <DrawerHeader>{item.model}</DrawerHeader>
+                        <DrawerHeader>{item.productNameShort}</DrawerHeader>
                         <DrawerBody>
                             <div className="flex gap-4 h-full">
                                 <div className="flex-1">
@@ -48,7 +48,7 @@ export default function ReviewItem({ item }: ReviewItemProps) {
                                 </div>                                                        
                                 <div className="flex-1 space-y-4">
                                     <div>
-                                        <User name={item.name_user} />
+                                        <User name={item.userName} />
                                         <p className="text-sm">Comprado el 10 de septiembre de 2024</p>
                                     </div>
 
@@ -57,8 +57,8 @@ export default function ReviewItem({ item }: ReviewItemProps) {
                                     <p className="text-sm leading-relaxed">{item.comment}</p>
 
                                     <div className="bg-gray-100 rounded-lg p-1 px-4 w-full">
-                                        <Link to={`/products/details/${item.product_id}`} className="font-bold">
-                                            {item.model} {'>'}
+                                        <Link to={`/products/details/${item.productId}`} className="font-bold">
+                                            {item.productNameShort} {'>'}
                                         </Link>
                                     </div>
                                     
