@@ -21,7 +21,11 @@ export default function App() {
     return (
         <div className="">
             <NavbarComponent />
-            <div className="overflow-x-hidden min-h-screen px-4 max-w-6xl mx-auto py-4 md:py-10">
+            <main className="
+                overflow-x-hidden min-h-screen 
+                px-4 max-w-6xl mx-auto 
+                py-10 md:pt-24 md:pb-10
+            ">
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/terms-of-use" element={<TermsOfUse />} />
@@ -32,8 +36,8 @@ export default function App() {
                     <Route path="/category/:id/:tags" element={<ProductsTags />} />
                     <Route path="/end-fast-tech" element={<EndFastTech />} />
                 </Routes>
-            </div>
-            <div className="bg-white p-8">
+            </main>
+            <div className="bg-white p-8 pb-32 md:pb-8">
                 <Footer />
             </div>            
         </div>

@@ -11,7 +11,7 @@ import { useEffect } from "react";
 
 export default function Home() {
 
-    const { data } = useQuery({
+    const { data, isLoading, isError } = useQuery({
         queryFn: getAllProducts,
         queryKey: ['all-products']
     })
@@ -24,7 +24,7 @@ export default function Home() {
         <div className="h-full space-y-20">
             <Header />
 
-            {data && <ProductsList items={data} />}
+            <ProductsList items={data} isLoading={isLoading || isError} />
 
             <TrendingSearches />
             

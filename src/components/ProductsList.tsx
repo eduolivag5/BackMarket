@@ -1,21 +1,23 @@
-import { Carrusel } from "../components/Carrusel";
-import ProductItem from "../components/ProductItem";
 import { Product } from "../types";
+import { Carrusel } from "./Carrusel";
+import ProductItem from "./ProductItem";
 
 interface ProductsListProps {
-    items: Product[]
+    items: Product[] | undefined;
+    isLoading: boolean;
 }
 
-export default function ProductsList({ items } : ProductsListProps) {
+export default function ProductsList({ items, isLoading }: ProductsListProps) {
+    // Generamos 5 espacios para el esqueleto
+    const skeletonItems = Array.from({ length: 5 }).map((_, i) => ({ id: `skeleton-${i}` }));
 
     return (
         <Carrusel 
             title="Sugerencias para ti"
             format="full"
-            itemsList={items
-                .slice(0,10)
-            }
+            itemsList={isLoading ? (skeletonItems as any) : (items || [])}
             ElementToRender={ProductItem}
+            isLoading={isLoading}
         />
-    )
+    );
 }
