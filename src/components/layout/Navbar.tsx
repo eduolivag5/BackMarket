@@ -6,7 +6,7 @@ export default function NavbarComponent() {
   const categories = [
     { id: "1", name: "Móviles", icon: <Smartphone size={18} /> },
     { id: "2", name: "Tablets", icon: <Tablet size={18} /> },
-    { id: "3", name: "Portátiles", icon: <Laptop size={18} /> },
+    { id: "4", name: "Portátiles", icon: <Laptop size={18} /> },
   ];
 
   const menuItems = [
