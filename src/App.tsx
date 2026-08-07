@@ -9,6 +9,8 @@ import { useEffect } from "react";
 import CategoryDetails from "./pages/CategoryDetails";
 import ProductsTags from "./pages/ProductsTags";
 import EndFastTech from "./pages/EndFastTech";
+import Profile from "./pages/Profile";
+import Cart from "./pages/Cart";
 
 export default function App() {
 
@@ -28,6 +30,8 @@ export default function App() {
             ">
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/cart" element={<Cart />} />
                     <Route path="/terms-of-use" element={<TermsOfUse />} />
                     <Route path="/legal-mentions" element={<LegalMentions />} />
                     <Route path="/products/details/:id" element={<ItemDetails />} />
